@@ -11,11 +11,15 @@ public class SceneControl : ScriptableObject
     [SerializeField] private int mainSceneIndex=1;
     public void LoadMainScene()
     {
-        SceneManager.LoadScene(mainSceneIndex);
+     Scene currentScene=   SceneManager.GetSceneAt(1);
+        SceneManager.LoadScene(mainSceneIndex,LoadSceneMode.Additive);
+        SceneManager.UnloadSceneAsync(currentScene);
     }
     public void LoadStartScene()
     {
-        SceneManager.LoadScene(startSceneIndex);
+        Scene currentScene = SceneManager.GetSceneAt(2);
+        SceneManager.LoadScene(startSceneIndex, LoadSceneMode.Additive);
+        SceneManager.UnloadSceneAsync(currentScene);
     }
     public void Exit()
     {

@@ -6,6 +6,9 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/OwnCopyright/Scenes/AudioScene.unity
+    guid: 735a6dabf6af60d4295fe330c58a1af4
+  - enabled: 1
     path: Assets/OwnCopyright/Scenes/TitleScreen.unity
     guid: 33fba088a286e5149b788c539fa7810f
   - enabled: 1

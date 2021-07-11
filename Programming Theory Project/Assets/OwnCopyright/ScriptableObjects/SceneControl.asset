@@ -12,3 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3b6d285c938d2f64099c21484ed1a1b7, type: 3}
   m_Name: SceneControl
   m_EditorClassIdentifier: 
+  startSceneIndex: 1
+  mainSceneIndex: 2
