@@ -7,13 +7,15 @@ using UnityEngine.SceneManagement;
 [CreateAssetMenu(fileName = "SceneControl", menuName = "ScriptableObjects/SceneControl")]
 public class SceneControl : ScriptableObject
 {
+    [SerializeField] private int startSceneIndex=0;
+    [SerializeField] private int mainSceneIndex=1;
     public void LoadMainScene()
     {
-        SceneManager.LoadScene(1);
+        SceneManager.LoadScene(mainSceneIndex);
     }
     public void LoadStartScene()
     {
-        SceneManager.LoadScene(0);
+        SceneManager.LoadScene(startSceneIndex);
     }
     public void Exit()
     {
