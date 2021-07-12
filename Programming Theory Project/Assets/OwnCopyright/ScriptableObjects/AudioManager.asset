@@ -23,7 +23,4 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 457e798d72bc709428b921bc8794016c, type: 2}
   gameEvents: {fileID: 11400000, guid: 4c48003b6c63d284f9f6eff9fe0214b8, type: 2}
   masterMixer: {fileID: 24100000, guid: a23ab23408eee904b842102ca0a6bd64, type: 2}
-  audioSources:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  audioSources: []

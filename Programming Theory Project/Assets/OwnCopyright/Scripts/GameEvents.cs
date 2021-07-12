@@ -16,7 +16,13 @@ public class GameEvents : ScriptableObject
     [SerializeField] public UnityAction<float> audioVolumeChangedEvent = delegate { };
     [SerializeField] public UnityAction audioFinishedPlayingEvent = delegate { };
     [SerializeField] public UnityAction applicationExitEvent = delegate { };
-
+    //Inventory System Events
+    [SerializeField] public UnityAction<ItemSO, int> itemAmountChangedEvent = delegate { };//parameter: Item and amount
+    [SerializeField] public UnityAction clearInventoryEvent = delegate { };
+    [SerializeField] public UnityAction buyScreenUpdateRequestedEvent = delegate { };
+    [SerializeField] public UnityAction buyScreenHideRequestedEvent = delegate { };
+    [SerializeField] public UnityAction sellScreenUpdateRequestedEvent = delegate { };
+    [SerializeField] public UnityAction sellScreenHideRequestedEvent = delegate { };
     private void OnEnable()
     {
     }
@@ -27,7 +33,7 @@ public class GameEvents : ScriptableObject
     }
     public void raiseMainSceneLoadRequestedEvent()
     {
-        Debug.Log("GameEvents: mainSceneLoadRequested event raised");
+        //Debug.Log("GameEvents: mainSceneLoadRequested event raised");
         mainSceneLoadRequestedEvent.Invoke();
     }
     public void raiseMenuSceneLoadRequestedEvent()
@@ -43,25 +49,55 @@ public class GameEvents : ScriptableObject
     }
     public void raiseAudioFinishedPlayingEvent()
     {
-        Debug.Log("GameEvents: audioFinishedPlaying event raised");
+        //Debug.Log("GameEvents: audioFinishedPlaying event raised");
         audioFinishedPlayingEvent.Invoke();
     }
     public void raiseApplicationStartEvent()
     {
-        Debug.Log("GameEvents: applicationStart event raised");
+        //Debug.Log("GameEvents: applicationStart event raised");
         applicationStartEvent.Invoke();
     }
     public void raisePlayerWantsToBuyEvent()
     {
-        Debug.Log("GameEvents: playerWantsToBuy event raised");
+        //Debug.Log("GameEvents: playerWantsToBuy event raised");
         playerWantsToBuyEvent.Invoke();
     }
     public void raisePlayerWantsToSellEvent()
     {
-        Debug.Log("GameEvents: playerWantsToSell event raised");
+        //Debug.Log("GameEvents: playerWantsToSell event raised");
         playerWantsToSellEvent.Invoke();
     }
- 
+    public void raiseClearInventoryEvent()
+    {
+        //Debug.Log("GameEventsSO: clear inventory event raised");
+        clearInventoryEvent.Invoke();
+    }
+
+    public void raiseItemAmountChangedEvent(ItemSO item, int amount)
+    {
+        //Debug.Log("GameEventsSO: item amount changed event raised");
+        itemAmountChangedEvent.Invoke(item, amount);
+    }
+
+    public void raiseBuyScreenUpdateRequestedEvent()
+    {//Debug.Log("GameEventsSO: BuyScreenUpdateRequestedEvent raised");
+        buyScreenUpdateRequestedEvent.Invoke();
+    }
+    public void raiseBuyScreenHideRequestedEvent()
+    {//Debug.Log("GameEventsSO: BuyScreenHideRequested event raised");
+        buyScreenHideRequestedEvent.Invoke();
+    }
+
+    public void raiseSellScreenUpdateRequestedEvent()
+    {//Debug.Log("GameEventsSO: SellScreenUpdateRequestedEvent raised");
+        sellScreenUpdateRequestedEvent.Invoke();
+    }
+
+    public void raiseSellScreenHideRequestedEvent()
+    {//Debug.Log("GameEventsSO: SellScreenHideRequested event raised");
+        sellScreenHideRequestedEvent.Invoke();
+    }
+
     public void raiseApplicationExitEvent()
     {
         //Debug.Log("GameEvents: applicationExit event raised");

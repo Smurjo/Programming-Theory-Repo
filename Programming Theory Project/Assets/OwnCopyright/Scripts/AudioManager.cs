@@ -38,7 +38,7 @@ public class AudioManager : ScriptableObject
         gameEvents.playerWantsToSellEvent += setSellAudioWeights;
         preferredAudioSettings = new PreferredAudioSettings();
         preferredAudioSettings = preferredAudioSettings.FromFile<PreferredAudioSettings>();
-        Debug.Log("AudioManager: Initialize, preferredAudioSettings.masterVolume" + preferredAudioSettings.masterVolume);
+        //Debug.Log("AudioManager: Initialize, preferredAudioSettings.masterVolume" + preferredAudioSettings.masterVolume);
         masterMixer.SetFloat("MasterVolume", preferredAudioSettings.masterVolume);
     }
 
@@ -88,7 +88,7 @@ public class AudioManager : ScriptableObject
             for (int i = 0; i < audioSources.Count; i++)
             {
                 audioSources[i].volume = audioWeights[weightIndex].clipVolumes[i];
-                Debug.Log("AudioManager setAudioWeights volume " + i + ": " + audioSources[i].volume);
+                //Debug.Log("AudioManager setAudioWeights volume " + i + ": " + audioSources[i].volume);
             }
         }
     }
@@ -98,7 +98,7 @@ public class AudioManager : ScriptableObject
         {
             audioSources = new List<AudioSource>();
         }
-        Debug.Log("AudioManager: StartAudioSources, audioSources.Count " + audioSources.Count);
+        //Debug.Log("AudioManager: StartAudioSources, audioSources.Count " + audioSources.Count);
 
         AudioMixerGroup[] mixerGroups = masterMixer.FindMatchingGroups("Master/MusicGroup");
         for (int i = 0; i < audioClips.Length; i++)
@@ -110,7 +110,7 @@ public class AudioManager : ScriptableObject
         }
         setStartAudioWeights();
         SyncAudioClips();
-        Debug.Log("AudioManager: StartAudioSources, audioSources.Count " + audioSources.Count);
+       // Debug.Log("AudioManager: StartAudioSources, audioSources.Count " + audioSources.Count);
     }
 
     public void OnVolumeChanged(float volume)
