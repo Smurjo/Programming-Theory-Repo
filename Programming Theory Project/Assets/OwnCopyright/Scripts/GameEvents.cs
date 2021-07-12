@@ -19,6 +19,7 @@ public class GameEvents : ScriptableObject
     //Inventory System Events
     [SerializeField] public UnityAction<ItemSO, int> itemAmountChangedEvent = delegate { };//parameter: Item and amount
     [SerializeField] public UnityAction clearInventoryEvent = delegate { };
+    [SerializeField] public UnityAction windowSizeChangedEvent = delegate { };
     [SerializeField] public UnityAction buyScreenUpdateRequestedEvent = delegate { };
     [SerializeField] public UnityAction buyScreenHideRequestedEvent = delegate { };
     [SerializeField] public UnityAction sellScreenUpdateRequestedEvent = delegate { };
@@ -40,6 +41,11 @@ public class GameEvents : ScriptableObject
     {
         //Debug.Log("GameEvents: mainMenuSceneLoadRequested event raised");
         menuSceneLoadRequestedEvent.Invoke();
+    }
+    public void raiseWindowSizeChangedEvent()
+    {
+        //Debug.Log("GameEvents: WindowSizeChangedEvent raised");
+        windowSizeChangedEvent.Invoke();
     }
     public void raiseAudioVolumeChangedEvent(Slider slider)
     {

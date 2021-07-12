@@ -15,9 +15,9 @@ MonoBehaviour:
   gameEvents: {fileID: 11400000, guid: 4c48003b6c63d284f9f6eff9fe0214b8, type: 2}
   itemList: {fileID: 11400000, guid: b39ccd5405d778f4db663d1274f0d2ab, type: 2}
   itemFrameWidth: 10
-  pixelOffsetX: 0
-  pixelOffsetY: 0
+  pixelOffsetX: 80
+  pixelOffsetY: 80
   buyPanelPrefab: {fileID: 1861723301627823002, guid: 95e629c72a018d24d8622363c99b7ff9, type: 3}
   sellPanelPrefab: {fileID: 5137136442686623185, guid: 3f1a7a04ca570314382457e5f9842602, type: 3}
-  buyBottonPrefab: {fileID: 0}
-  sellBottonPrefab: {fileID: 0}
+  buyButtonPrefab: {fileID: 1065396023411271256, guid: d5a9385e97974144cbbd40d36ceade23, type: 3}
+  sellButtonPrefab: {fileID: 8346724048831195871, guid: c60d6c8b84a3e9b4f9368bb6bc919aeb, type: 3}

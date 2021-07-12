@@ -5,6 +5,8 @@ using UnityEngine;
    
 public class ItemSO : ScriptableObject {
     public int amountInInventory;
+    public int sellPrice;//price in cent
+    public int buyPrice;//price in cent
     public float weightPerUnit; //weight in kg
     public string itemName;
     public Sprite icon;
