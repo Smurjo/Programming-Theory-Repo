@@ -36,7 +36,8 @@ public class SceneControl : ScriptableObject
     }
     public void LoadStartScene()
     {
-        if (SceneManager.sceneCount > 1)
+        if (SceneManager.sceneCount > 1) //in case of coming back from the game,
+                                         //else the one and only scene is the audio scene
         {
             Scene currentScene = SceneManager.GetSceneAt(1);
             SceneManager.UnloadSceneAsync(currentScene);

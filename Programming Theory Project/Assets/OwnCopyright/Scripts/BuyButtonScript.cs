@@ -7,11 +7,6 @@ namespace Scripts
 {
     public class BuyButtonScript : InventoryButtonScript
     {
-        private bool playerHasBoughtOne;
-        private void Start()
-        {
-            playerHasBoughtOne = false;
-        }
         public override void updatePrice()
         {
             Text priceText = gameObject.transform.Find("PriceText").gameObject.GetComponent<Text>();
@@ -31,21 +26,9 @@ namespace Scripts
             Debug.Log("BuyButtonScript: itemBought");
             if (money.amountInInventory >= item.buyPrice)
             {
-                playerHasBoughtOne = true;
                 gameEvents.raiseItemAmountChangedEvent(item, 1);
                 gameEvents.raiseItemAmountChangedEvent(money, -item.buyPrice);
                 gameEvents.raiseBuyScreenUpdateRequestedEvent();
-            }
-        }
-        public void itemOrderCanceled()
-        {
-            Debug.Log("BuyButtonScript: Order canceled");
-            if (playerHasBoughtOne)
-            {
-                gameEvents.raiseItemAmountChangedEvent(item, -1);
-                gameEvents.raiseItemAmountChangedEvent(money, item.buyPrice);
-                gameEvents.raiseBuyScreenUpdateRequestedEvent();
-                playerHasBoughtOne = false;
             }
         }
     }
