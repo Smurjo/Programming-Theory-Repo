@@ -2,13 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PreferredAudioSettings : SessionPersistent
+public class PreferredAudioSettings : SessionPersistentSettings
 {
 
     public float masterVolume;
     public PreferredAudioSettings()
     {
-        this.masterVolume = 1f;
+        this.masterVolume = -60f;
     }
     protected override AudioSettings GetDefault<AudioSettings>()
     {

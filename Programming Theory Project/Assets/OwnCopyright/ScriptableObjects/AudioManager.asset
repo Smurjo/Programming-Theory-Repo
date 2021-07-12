@@ -13,10 +13,15 @@ MonoBehaviour:
   m_Name: AudioManager
   m_EditorClassIdentifier: 
   audioClips:
-  - {fileID: 8300000, guid: 834bc99524a174a378e982623582c06d, type: 3}
   - {fileID: 8300000, guid: 606910ec401804eb09925f0d57909c04, type: 3}
+  - {fileID: 8300000, guid: 834bc99524a174a378e982623582c06d, type: 3}
   - {fileID: 8300000, guid: d70999ba737574c808b1d37cbdca0c37, type: 3}
-  AudioSourcePrefab: {fileID: 4012726979083180108, guid: 6f73624429811b94a96c11e5df651999, type: 3}
+  audioWeights:
+  - {fileID: 11400000, guid: f00c3783bbfb19a4980a3bce2405af72, type: 2}
+  - {fileID: 11400000, guid: 5c4f21db8c84adf4e8d254f0015c3b80, type: 2}
+  - {fileID: 11400000, guid: 10d5b00830a67d446a5fd8169208b293, type: 2}
+  - {fileID: 11400000, guid: 457e798d72bc709428b921bc8794016c, type: 2}
+  gameEvents: {fileID: 11400000, guid: 4c48003b6c63d284f9f6eff9fe0214b8, type: 2}
   masterMixer: {fileID: 24100000, guid: a23ab23408eee904b842102ca0a6bd64, type: 2}
   audioSources:
   - {fileID: 0}

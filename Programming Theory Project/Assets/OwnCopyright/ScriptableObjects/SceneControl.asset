@@ -14,3 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startSceneIndex: 1
   mainSceneIndex: 2
+  gameEvents: {fileID: 11400000, guid: 4c48003b6c63d284f9f6eff9fe0214b8, type: 2}
