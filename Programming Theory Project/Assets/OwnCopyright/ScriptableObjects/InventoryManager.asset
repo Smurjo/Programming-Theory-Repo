@@ -21,3 +21,5 @@ MonoBehaviour:
   sellPanelPrefab: {fileID: 5137136442686623185, guid: 3f1a7a04ca570314382457e5f9842602, type: 3}
   buyButtonPrefab: {fileID: 1065396023411271256, guid: d5a9385e97974144cbbd40d36ceade23, type: 3}
   sellButtonPrefab: {fileID: 8346724048831195871, guid: c60d6c8b84a3e9b4f9368bb6bc919aeb, type: 3}
+  moneyItem: {fileID: 11400000, guid: b235b21ab7433ce4a97377b6269c8580, type: 2}
+  centsNeededToWin: 24000

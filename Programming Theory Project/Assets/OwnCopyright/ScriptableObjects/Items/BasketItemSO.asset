@@ -15,6 +15,7 @@ MonoBehaviour:
   amountInInventory: 0
   sellPrice: 0
   buyPrice: 0
+  basePrice: 800
   weightPerUnit: 0
   itemName: basket
   icon: {fileID: 21300000, guid: 7f0d681d935a93b45858bda717fe88d0, type: 3}

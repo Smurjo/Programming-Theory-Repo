@@ -36,6 +36,7 @@ public class AudioManager : ScriptableObject
         gameEvents.menuSceneLoadRequestedEvent += setStartAudioWeights;
         gameEvents.playerWantsToBuyEvent += setBuyAudioWeights;
         gameEvents.playerWantsToSellEvent += setSellAudioWeights;
+        gameEvents.gameWonEvent += setWinAudioWeights;
         preferredAudioSettings = new PreferredAudioSettings();
         preferredAudioSettings = preferredAudioSettings.FromFile<PreferredAudioSettings>();
         //Debug.Log("AudioManager: Initialize, preferredAudioSettings.masterVolume" + preferredAudioSettings.masterVolume);
@@ -50,6 +51,7 @@ public class AudioManager : ScriptableObject
         gameEvents.menuSceneLoadRequestedEvent -= setStartAudioWeights;
         gameEvents.playerWantsToBuyEvent -= setBuyAudioWeights;
         gameEvents.playerWantsToSellEvent -= setSellAudioWeights;
+        gameEvents.gameWonEvent -= setWinAudioWeights;
         if (audioSources != null)//just in case something is left over from the SO
         {
             audioSources = null;
@@ -71,6 +73,10 @@ public class AudioManager : ScriptableObject
     public void setSellAudioWeights()
     {
         setAudioWeights(3);//sellAudioWeights
+    }
+    public void setWinAudioWeights()
+    {
+        setAudioWeights(4);//winAudioWeights
     }
     public bool IsAudioPlaying()
     {

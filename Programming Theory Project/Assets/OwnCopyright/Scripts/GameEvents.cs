@@ -11,6 +11,7 @@ public class GameEvents : ScriptableObject
     [SerializeField] public UnityAction mainSceneLoadRequestedEvent = delegate { };
     [SerializeField] public UnityAction menuSceneLoadRequestedEvent = delegate { };
     [SerializeField] public UnityAction applicationStartEvent = delegate { };
+    [SerializeField] public UnityAction gameWonEvent = delegate { };
     [SerializeField] public UnityAction playerWantsToBuyEvent = delegate { };
     [SerializeField] public UnityAction playerWantsToSellEvent = delegate { };
     [SerializeField] public UnityAction<float> audioVolumeChangedEvent = delegate { };
@@ -73,18 +74,21 @@ public class GameEvents : ScriptableObject
         //Debug.Log("GameEvents: playerWantsToSell event raised");
         playerWantsToSellEvent.Invoke();
     }
+    public void raiseGameWonEvent()
+    {
+        //Debug.Log("GameEvents: gameWon event raised");
+        gameWonEvent.Invoke();
+    }
     public void raiseClearInventoryEvent()
     {
         //Debug.Log("GameEventsSO: clear inventory event raised");
         clearInventoryEvent.Invoke();
     }
-
     public void raiseItemAmountChangedEvent(ItemSO item, int amount)
     {
         //Debug.Log("GameEventsSO: item amount changed event raised");
         itemAmountChangedEvent.Invoke(item, amount);
     }
-
     public void raiseBuyScreenUpdateRequestedEvent()
     {//Debug.Log("GameEventsSO: BuyScreenUpdateRequestedEvent raised");
         buyScreenUpdateRequestedEvent.Invoke();
@@ -93,17 +97,14 @@ public class GameEvents : ScriptableObject
     {//Debug.Log("GameEventsSO: BuyScreenHideRequested event raised");
         buyScreenHideRequestedEvent.Invoke();
     }
-
     public void raiseSellScreenUpdateRequestedEvent()
     {//Debug.Log("GameEventsSO: SellScreenUpdateRequestedEvent raised");
         sellScreenUpdateRequestedEvent.Invoke();
     }
-
     public void raiseSellScreenHideRequestedEvent()
     {//Debug.Log("GameEventsSO: SellScreenHideRequested event raised");
         sellScreenHideRequestedEvent.Invoke();
     }
-
     public void raiseApplicationExitEvent()
     {
         //Debug.Log("GameEvents: applicationExit event raised");

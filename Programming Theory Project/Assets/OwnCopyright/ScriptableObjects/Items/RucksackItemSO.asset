@@ -13,8 +13,9 @@ MonoBehaviour:
   m_Name: RucksackItemSO
   m_EditorClassIdentifier: 
   amountInInventory: 0
-  sellPrice: 15
-  buyPrice: 13
+  sellPrice: 0
+  buyPrice: 0
+  basePrice: 1700
   weightPerUnit: 0
   itemName: Rucksack
   icon: {fileID: 21300000, guid: b485c51356bce7e4fac3750b919215c6, type: 3}

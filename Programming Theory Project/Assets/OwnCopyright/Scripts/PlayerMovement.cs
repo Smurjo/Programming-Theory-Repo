@@ -7,6 +7,7 @@ public class PlayerMovement : MonoBehaviour
 {
     [SerializeField] private Vector3 buyPosition;
     [SerializeField] private Vector3 sellPosition;
+    [SerializeField] private Vector3 winPosition;
     [SerializeField] private GameEvents gameEvents;
 
     Animator animator;
@@ -21,11 +22,13 @@ public class PlayerMovement : MonoBehaviour
 
         gameEvents.playerWantsToBuyEvent += goToBuy;
         gameEvents.playerWantsToSellEvent += goToSell;
+        gameEvents.gameWonEvent += goToWinPosition; 
     }
     void OnDisable()
     {
         gameEvents.playerWantsToBuyEvent -= goToBuy;
-        gameEvents.playerWantsToSellEvent -= goToSell;
+        gameEvents.playerWantsToSellEvent -= goToSell; 
+        gameEvents.gameWonEvent -= goToWinPosition;
     }
     private void LateUpdate()
     {
@@ -38,5 +41,9 @@ public class PlayerMovement : MonoBehaviour
     public void goToSell()
     {
         navMeshAgent.destination = sellPosition;
+    }
+    public void goToWinPosition()
+    {
+        navMeshAgent.destination = winPosition;
     }
 }

@@ -12,9 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ebb0d753f68e24b45821cb4eb3096e0e, type: 3}
   m_Name: MoneyItemSO
   m_EditorClassIdentifier: 
-  amountInInventory: 1600
+  amountInInventory: 1634
   sellPrice: 1
   buyPrice: 1
+  basePrice: 0
   weightPerUnit: 0
   itemName: Money
   icon: {fileID: 21300000, guid: 6c61c002c74eec8419a8f3885ed3e7c1, type: 3}

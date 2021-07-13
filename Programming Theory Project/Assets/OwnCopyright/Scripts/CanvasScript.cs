@@ -4,12 +4,29 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 
 
-    public class CanvasScript : UIBehaviour
+public class CanvasScript : UIBehaviour
+{
+    [SerializeField] private GameEvents gameEvents;
+    [SerializeField] private List<GameObject> displayOnWin;
+
+    protected override void OnEnable()
     {
-        [SerializeField] private GameEvents gameEvents;
-        protected override void OnRectTransformDimensionsChange()
+        gameEvents.gameWonEvent += OnWin;
+    }
+    protected override void OnDisable()
+    {
+        gameEvents.gameWonEvent -= OnWin;
+    }
+    public void OnWin()
+    {
+        foreach (var item in displayOnWin)
         {
-        gameEvents.raiseWindowSizeChangedEvent();
+            item.SetActive(true);
         }
     }
+    protected override void OnRectTransformDimensionsChange()
+    {
+        gameEvents.raiseWindowSizeChangedEvent();
+    }
+}
 

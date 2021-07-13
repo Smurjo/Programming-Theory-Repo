@@ -15,6 +15,7 @@ MonoBehaviour:
   amountInInventory: 0
   sellPrice: 0
   buyPrice: 0
+  basePrice: 500
   weightPerUnit: 0
   itemName: pot plant
   icon: {fileID: 21300000, guid: 9bcdfc4fa4d849247af5efe9187d6e85, type: 3}

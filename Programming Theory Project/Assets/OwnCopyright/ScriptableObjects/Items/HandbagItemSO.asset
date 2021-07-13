@@ -13,8 +13,9 @@ MonoBehaviour:
   m_Name: HandbagItemSO
   m_EditorClassIdentifier: 
   amountInInventory: 0
-  sellPrice: 23
-  buyPrice: 21
+  sellPrice: 0
+  buyPrice: 0
+  basePrice: 1500
   weightPerUnit: 0
   itemName: Handbag
   icon: {fileID: 21300000, guid: ca375c76194334f42a337dec78094473, type: 3}

@@ -12,9 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ebb0d753f68e24b45821cb4eb3096e0e, type: 3}
   m_Name: AxeItemSO
   m_EditorClassIdentifier: 
-  amountInInventory: 10
-  sellPrice: 10
-  buyPrice: 8
+  amountInInventory: 0
+  sellPrice: 0
+  buyPrice: 0
+  basePrice: 2000
   weightPerUnit: 0
   itemName: axe
   icon: {fileID: 21300000, guid: 334ecc18d685ca445aa36d554d6953e7, type: 3}

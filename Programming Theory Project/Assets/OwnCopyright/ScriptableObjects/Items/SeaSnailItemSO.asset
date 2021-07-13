@@ -13,8 +13,9 @@ MonoBehaviour:
   m_Name: SeaSnailItemSO
   m_EditorClassIdentifier: 
   amountInInventory: 0
-  sellPrice: 18
-  buyPrice: 16
+  sellPrice: 1464
+  buyPrice: 1606
+  basePrice: 1200
   weightPerUnit: 0
   itemName: 
   icon: {fileID: 21300000, guid: 26512a92163a9db4f8e0ea25a703e506, type: 3}

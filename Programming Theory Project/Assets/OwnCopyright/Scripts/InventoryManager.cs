@@ -15,10 +15,12 @@ public class InventoryManager : ScriptableObject
     [SerializeField] GameObject sellPanelPrefab;
     [SerializeField] GameObject buyButtonPrefab;
     [SerializeField] GameObject sellButtonPrefab;
+    [SerializeField] private ItemSO moneyItem;
+    [SerializeField] private int centsNeededToWin = 24000;//in cents
 
     private GameObject buyPanel;
     private GameObject sellPanel;
-    public void onInitialization(GameObject mainCanvas)
+    public void Initialize(GameObject mainCanvas)
     {
         buyPanel = Instantiate(buyPanelPrefab, mainCanvas.transform);
         buyPanel.SetActive(false);
@@ -31,17 +33,21 @@ public class InventoryManager : ScriptableObject
         gameEvents.itemAmountChangedEvent += onItemAmountChangedEvent;
         gameEvents.playerWantsToBuyEvent += ShowBuyScreen;
         gameEvents.buyScreenHideRequestedEvent += HideBuyScreen;
+        gameEvents.buyScreenUpdateRequestedEvent += UpdateBuyScreen;
         gameEvents.playerWantsToSellEvent += ShowSellScreen;
+        gameEvents.sellScreenUpdateRequestedEvent += UpdateSellScreen;
         gameEvents.sellScreenHideRequestedEvent += HideSellScreen;
-        gameEvents.windowSizeChangedEvent+=OnWindowSizechanged ;
+        gameEvents.windowSizeChangedEvent += OnWindowSizechanged;
     }
-    public void onCleanup()
+    public void CleanUp()
     {
         gameEvents.clearInventoryEvent -= onClearInventory;
         gameEvents.itemAmountChangedEvent -= onItemAmountChangedEvent;
         gameEvents.playerWantsToBuyEvent -= ShowBuyScreen;
+        gameEvents.buyScreenUpdateRequestedEvent -= UpdateBuyScreen;
         gameEvents.buyScreenHideRequestedEvent -= HideBuyScreen;
         gameEvents.playerWantsToSellEvent -= ShowSellScreen;
+        gameEvents.sellScreenUpdateRequestedEvent -= UpdateSellScreen;
         gameEvents.sellScreenHideRequestedEvent -= HideSellScreen;
     }
     public void onClearInventory()
@@ -57,8 +63,24 @@ public class InventoryManager : ScriptableObject
         item.amountInInventory += amount;
         updateInventoryScreen(buyPanel, buyButtonPrefab);
         updateInventoryScreen(sellPanel, sellButtonPrefab);
+        if (item.Equals(moneyItem))
+        {
+            if (item.amountInInventory > centsNeededToWin)
+            {
+                gameEvents.raiseGameWonEvent();
+                buyPanel.SetActive(false);
+                sellPanel.SetActive(false);
+            }
+        }
     }
-
+    public void UpdateBuyScreen()
+    {
+        updateInventoryScreen(buyPanel, buyButtonPrefab);
+    }
+    public void UpdateSellScreen()
+    {
+        updateInventoryScreen(sellPanel, sellButtonPrefab);
+    }
     public void ShowBuyScreen()
     {
         buyPanel.SetActive(true);
@@ -109,7 +131,7 @@ public class InventoryManager : ScriptableObject
         {
             Debug.Log("InventoryManager: updateInventoryScreen rectTransform = null");
         }
-        for (int i = 0; i < itemList.PossibleItemsCount(); i++) //leave out 0, 0 is item for money
+        for (int i = 0; i < itemList.PossibleItemsCount(); i++)
         {
             //if (itemList.getItemAt(i).amountInInventory > 0)
             //{
@@ -119,8 +141,7 @@ public class InventoryManager : ScriptableObject
             RectTransform panelTransform = (RectTransform)panel.transform;
             Vector3[] worldCorners = new Vector3[4];
             panelTransform.GetWorldCorners(worldCorners);
-            Debug.Log("InventoryManager: updateInventoryScreen panel top left:" + worldCorners[1]);
-
+            //  Debug.Log("InventoryManager: updateInventoryScreen panel top left:" + worldCorners[1]);
             itemRectTransform = instantiatedItemIcon.GetComponent<RectTransform>();
             itemRectTransform.position = new Vector3(
              worldCorners[1].x + pixelOffsetX + (2 * iconColumn + 1) * itemFrameWidth + iconColumn * itemRectTransform.rect.width,
@@ -129,7 +150,7 @@ public class InventoryManager : ScriptableObject
             InventoryButtonScript buttonScript = instantiatedItemIcon.GetComponent<InventoryButtonScript>();
             buttonScript.item = itemList.getItemAt(i);
             buttonScript.updateAmount();
-            buttonScript.updateIcon(); 
+            buttonScript.updateIcon();
             buttonScript.updatePrice();
             instantiatedItemIcon.GetComponent<Image>().sprite = itemList.getItemAt(i).icon;
             // }

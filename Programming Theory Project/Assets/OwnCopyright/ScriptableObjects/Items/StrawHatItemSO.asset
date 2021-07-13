@@ -15,6 +15,7 @@ MonoBehaviour:
   amountInInventory: 0
   sellPrice: 0
   buyPrice: 0
+  basePrice: 1600
   weightPerUnit: 0
   itemName: straw hat
   icon: {fileID: 21300000, guid: 4449e8112f502ac40ab6a51163de8dc6, type: 3}

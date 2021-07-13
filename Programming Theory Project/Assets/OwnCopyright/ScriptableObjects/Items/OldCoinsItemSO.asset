@@ -13,8 +13,9 @@ MonoBehaviour:
   m_Name: OldCoinsItemSO
   m_EditorClassIdentifier: 
   amountInInventory: 0
-  sellPrice: 100
-  buyPrice: 96
+  sellPrice: 0
+  buyPrice: 0
+  basePrice: 6500
   weightPerUnit: 0
   itemName: 
   icon: {fileID: 21300000, guid: 203f875659b8f184fb43c7f44cc34982, type: 3}

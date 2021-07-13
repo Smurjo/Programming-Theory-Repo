@@ -44,6 +44,8 @@ public class SceneControl : ScriptableObject
         }
         SceneManager.LoadSceneAsync(startSceneIndex, LoadSceneMode.Additive);
     }
+
+
     public void Exit()
     {
 #if UNITY_EDITOR

@@ -6,13 +6,19 @@ public class MainSceneInit : MonoBehaviour
 {
     [SerializeField] GameObject mainCanvas;
     [SerializeField] InventoryManager inventoryManager;
+    [SerializeField] MoneyMaster moneyMaster;
+    [SerializeField] PriceMaster priceMaster;
 
     public void OnEnable()
     {
-        inventoryManager.onInitialization(mainCanvas);
+        inventoryManager.Initialize(mainCanvas);
+        moneyMaster.Initialize(mainCanvas);
+        priceMaster.Initialize();
     }
     public void OnDisable()
     {
-        inventoryManager.onCleanup();
+        inventoryManager.CleanUp(); 
+        moneyMaster.CleanUp();
+        priceMaster.CleanUp();
     }
 }
