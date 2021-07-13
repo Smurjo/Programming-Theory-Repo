@@ -26,18 +26,18 @@ public class InventoryManager : ScriptableObject
         buyPanel.SetActive(false);
         sellPanel = Instantiate(sellPanelPrefab, mainCanvas.transform);
         sellPanel.SetActive(false);
-        updateInventoryScreen(buyPanel, buyButtonPrefab);
-        updateInventoryScreen(sellPanel, sellButtonPrefab);
+        updateInventoryScreen(buyPanel, buyButtonPrefab);// ABSTRACTION
+        updateInventoryScreen(sellPanel, sellButtonPrefab);// ABSTRACTION
 
-        gameEvents.clearInventoryEvent += onClearInventory;
-        gameEvents.itemAmountChangedEvent += onItemAmountChangedEvent;
-        gameEvents.playerWantsToBuyEvent += ShowBuyScreen;
-        gameEvents.buyScreenHideRequestedEvent += HideBuyScreen;
-        gameEvents.buyScreenUpdateRequestedEvent += UpdateBuyScreen;
-        gameEvents.playerWantsToSellEvent += ShowSellScreen;
-        gameEvents.sellScreenUpdateRequestedEvent += UpdateSellScreen;
-        gameEvents.sellScreenHideRequestedEvent += HideSellScreen;
-        gameEvents.windowSizeChangedEvent += OnWindowSizechanged;
+        gameEvents.clearInventoryEvent += onClearInventory;// POLYMORPHISM?
+        gameEvents.itemAmountChangedEvent += onItemAmountChangedEvent;// POLYMORPHISM?
+        gameEvents.playerWantsToBuyEvent += ShowBuyScreen;// POLYMORPHISM?
+        gameEvents.buyScreenHideRequestedEvent += HideBuyScreen;// POLYMORPHISM?
+        gameEvents.buyScreenUpdateRequestedEvent += UpdateBuyScreen;// POLYMORPHISM?
+        gameEvents.playerWantsToSellEvent += ShowSellScreen;// POLYMORPHISM?
+        gameEvents.sellScreenUpdateRequestedEvent += UpdateSellScreen;// POLYMORPHISM?
+        gameEvents.sellScreenHideRequestedEvent += HideSellScreen;// POLYMORPHISM?
+        gameEvents.windowSizeChangedEvent += OnWindowSizechanged;// POLYMORPHISM?
     }
     public void CleanUp()
     {
@@ -57,12 +57,12 @@ public class InventoryManager : ScriptableObject
             itemList.getItemAt(i).amountInInventory = 0;
         }
     }
-    public void onItemAmountChangedEvent(ItemSO item, int amount)
+    public void onItemAmountChangedEvent(ItemSO item, int amount)// ABSTRACTION
     {
         //Debug.Log("InventoryManager: reacting to item amount changed event");
         item.amountInInventory += amount;
-        updateInventoryScreen(buyPanel, buyButtonPrefab);
-        updateInventoryScreen(sellPanel, sellButtonPrefab);
+        updateInventoryScreen(buyPanel, buyButtonPrefab);// ABSTRACTION
+        updateInventoryScreen(sellPanel, sellButtonPrefab);// ABSTRACTION
         if (item.Equals(moneyItem))
         {
             if (item.amountInInventory > centsNeededToWin)
@@ -73,34 +73,34 @@ public class InventoryManager : ScriptableObject
             }
         }
     }
-    public void UpdateBuyScreen()
+    public void UpdateBuyScreen()// ABSTRACTION
     {
-        updateInventoryScreen(buyPanel, buyButtonPrefab);
+        updateInventoryScreen(buyPanel, buyButtonPrefab);// ABSTRACTION
     }
-    public void UpdateSellScreen()
+    public void UpdateSellScreen()// ABSTRACTION
     {
-        updateInventoryScreen(sellPanel, sellButtonPrefab);
+        updateInventoryScreen(sellPanel, sellButtonPrefab);// ABSTRACTION
     }
-    public void ShowBuyScreen()
+    public void ShowBuyScreen()// ABSTRACTION
     {
         buyPanel.SetActive(true);
         sellPanel.SetActive(false);
     }
-    public void ShowSellScreen()
+    public void ShowSellScreen()// ABSTRACTION
     {
         sellPanel.SetActive(true);
         buyPanel.SetActive(false);
     }
-    public void HideBuyScreen()
+    public void HideBuyScreen()// ABSTRACTION
     {
         buyPanel.SetActive(false);
     }
-    public void HideSellScreen()
+    public void HideSellScreen()// ABSTRACTION
     {
         sellPanel.SetActive(false);
     }
 
-    public void OnWindowSizechanged()
+    public void OnWindowSizechanged()// ABSTRACTION
     {
         updateInventoryScreen(buyPanel, buyButtonPrefab);
         updateInventoryScreen(sellPanel, sellButtonPrefab);
@@ -110,7 +110,7 @@ public class InventoryManager : ScriptableObject
     {
         int numberOfIconsPerRow = 1;
         int iconIndex = 0;
-        Debug.Log("InventoryManager: updateInventoryScreen ");
+      //  Debug.Log("InventoryManager: updateInventoryScreen ");
         RectTransform panelRectTransform = panel.GetComponent<RectTransform>();
         RectTransform itemRectTransform = buttonPrefab.GetComponent<RectTransform>();
         if ((panelRectTransform != null) && (itemRectTransform != null))
@@ -125,7 +125,7 @@ public class InventoryManager : ScriptableObject
             numberOfIconsPerRow = Mathf.FloorToInt(
                 (panelRectTransform.rect.width) /
                 (itemRectTransform.rect.width + 2 * itemFrameWidth));
-            Debug.Log("InventoryManager: updateInventoryScreen numberOfIconsPerRow" + numberOfIconsPerRow);
+         //   Debug.Log("InventoryManager: updateInventoryScreen numberOfIconsPerRow" + numberOfIconsPerRow);
         }
         else
         {
@@ -149,9 +149,9 @@ public class InventoryManager : ScriptableObject
             iconIndex++;
             InventoryButtonScript buttonScript = instantiatedItemIcon.GetComponent<InventoryButtonScript>();
             buttonScript.item = itemList.getItemAt(i);
-            buttonScript.updateAmount();
-            buttonScript.updateIcon();
-            buttonScript.updatePrice();
+            buttonScript.updateAmount();// POLYMORPHISM, BuyButtonScript and SellButtonScript inherit from InventoryButtonScript
+            buttonScript.updateIcon();// POLYMORPHISM
+            buttonScript.updatePrice();// POLYMORPHISM
             instantiatedItemIcon.GetComponent<Image>().sprite = itemList.getItemAt(i).icon;
             // }
         }

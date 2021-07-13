@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class InventoryButtonScript : MonoBehaviour
 {
     [SerializeField] public ItemSO item;
-    [SerializeField] public ItemSO money;
+    [SerializeField] protected ItemSO money;
     [SerializeField] protected GameEvents gameEvents;
 
     public virtual void updateAmount() 

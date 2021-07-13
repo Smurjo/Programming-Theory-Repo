@@ -5,12 +5,12 @@ using UnityEngine.UI;
 
 namespace Scripts
 {
-    public class BuyButtonScript : InventoryButtonScript
+    public class BuyButtonScript : InventoryButtonScript // INHERITANCE
     {
-        public override void updatePrice()
+        public override void updatePrice() // POLYMORPHISM
         {
             Text priceText = gameObject.transform.Find("PriceText").gameObject.GetComponent<Text>();
-            priceText.text = MoneyMaster.MoneyToString(item.buyPrice);
+            priceText.text = MoneyMaster.MoneyToString(item.buyPrice);// ABSTRACTION
         }
         public void itemBought()
         {

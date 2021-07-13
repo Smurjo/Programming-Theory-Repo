@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class AudioGO : MonoBehaviour
 {
-    [SerializeField] AudioManager audioManager;
-    [SerializeField] GameEvents gameEvents;
+    [SerializeField] private AudioManager audioManager;// ENCAPSULATION
+    [SerializeField] private GameEvents gameEvents;// ENCAPSULATION
 
     // Update is called once per frame
     void Update()
     {
-        if (!audioManager.IsAudioPlaying())
-            gameEvents.raiseAudioFinishedPlayingEvent();
+        if (!audioManager.IsAudioPlaying())// ABSTRACTION
+            gameEvents.raiseAudioFinishedPlayingEvent();// ABSTRACTION
     }
 }

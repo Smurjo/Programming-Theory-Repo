@@ -25,14 +25,7 @@ public class GameEvents : ScriptableObject
     [SerializeField] public UnityAction buyScreenHideRequestedEvent = delegate { };
     [SerializeField] public UnityAction sellScreenUpdateRequestedEvent = delegate { };
     [SerializeField] public UnityAction sellScreenHideRequestedEvent = delegate { };
-    private void OnEnable()
-    {
-    }
 
-    private void OnDisable()
-    {
-
-    }
     public void raiseMainSceneLoadRequestedEvent()
     {
         //Debug.Log("GameEvents: mainSceneLoadRequested event raised");

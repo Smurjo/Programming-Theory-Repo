@@ -4,22 +4,22 @@ using UnityEngine;
 
 public class Initializer : MonoBehaviour
 {
-    [SerializeField] GameEvents gameEvents;
-    [SerializeField] GameObject audioGO;
-    [SerializeField] SceneControl sceneControl;
-    [SerializeField] AudioManager audioManager;
+    [SerializeField] private GameEvents gameEvents;// ENCAPSULATION
+    [SerializeField] private GameObject audioGO;// ENCAPSULATION
+    [SerializeField] private SceneControl sceneControl;// ENCAPSULATION
+    [SerializeField] private AudioManager audioManager;// ENCAPSULATION
     // Start is called before the first frame update
     void Start()
     {
         audioManager.AudioGO = audioGO;
-        audioManager.Initialize();
-        sceneControl.Initialize();
+        audioManager.Initialize();// ABSTRACTION
+        sceneControl.Initialize();// ABSTRACTION
         gameEvents.raiseApplicationStartEvent();
     }
     void OnDisable()
     {
-        audioManager.CleanUp();
-        sceneControl.CleanUp();
+        audioManager.CleanUp();// ABSTRACTION
+        sceneControl.CleanUp();// ABSTRACTION
     }
 
 }

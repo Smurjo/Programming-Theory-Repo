@@ -6,16 +6,16 @@ using UnityEngine.Audio;
 [CreateAssetMenu(fileName = "AudioManager", menuName = "ScriptableObjects/AudioManager")]
 public class AudioManager : ScriptableObject
 {
-    [SerializeField] private AudioClip[] audioClips;
-    [SerializeField] private AudioWeights[] audioWeights;
-    [SerializeField] private GameEvents gameEvents;
-    [SerializeField] private AudioMixer masterMixer;
-    [SerializeField] private List<AudioSource> audioSources;
+    [SerializeField] private AudioClip[] audioClips;    // ENCAPSULATION
+    [SerializeField] private AudioWeights[] audioWeights;// ENCAPSULATION
+    [SerializeField] private GameEvents gameEvents;     // ENCAPSULATION
+    [SerializeField] private AudioMixer masterMixer;    // ENCAPSULATION
+    [SerializeField] private List<AudioSource> audioSources;// ENCAPSULATION
 
     private GameObject m_AudioGO = null;
     private PreferredAudioSettings preferredAudioSettings = null;
 
-    public GameObject AudioGO
+    public GameObject AudioGO // ENCAPSULATION
     {
         private get
         {
@@ -38,7 +38,11 @@ public class AudioManager : ScriptableObject
         gameEvents.playerWantsToSellEvent += setSellAudioWeights;
         gameEvents.gameWonEvent += setWinAudioWeights;
         preferredAudioSettings = new PreferredAudioSettings();
+#if UNITY_WEBGL
+        preferredAudioSettings.masterVolume = 0;
+#else 
         preferredAudioSettings = preferredAudioSettings.FromFile<PreferredAudioSettings>();
+#endif       
         //Debug.Log("AudioManager: Initialize, preferredAudioSettings.masterVolume" + preferredAudioSettings.masterVolume);
         masterMixer.SetFloat("MasterVolume", preferredAudioSettings.masterVolume);
     }
@@ -58,23 +62,23 @@ public class AudioManager : ScriptableObject
         }
     }
 
-    public void setStartAudioWeights()
+    public void setStartAudioWeights()// ABSTRACTION
     {
         setAudioWeights(0);//startAudioWeights
     }
-    public void setMainAudioWeights()
+    public void setMainAudioWeights()// ABSTRACTION
     {
         setAudioWeights(1);//mainAudioWeights
     }
-    public void setBuyAudioWeights()
+    public void setBuyAudioWeights()// ABSTRACTION
     {
         setAudioWeights(2);//buyAudioWeights
     }
-    public void setSellAudioWeights()
+    public void setSellAudioWeights()// ABSTRACTION
     {
         setAudioWeights(3);//sellAudioWeights
     }
-    public void setWinAudioWeights()
+    public void setWinAudioWeights()// ABSTRACTION
     {
         setAudioWeights(4);//winAudioWeights
     }
@@ -87,7 +91,7 @@ public class AudioManager : ScriptableObject
         else
             return audioSources[0].isPlaying;
     }
-    private void setAudioWeights(int weightIndex)
+    private void setAudioWeights(int weightIndex)// ABSTRACTION
     {
         if (audioSources != null)
         {
@@ -98,7 +102,7 @@ public class AudioManager : ScriptableObject
             }
         }
     }
-    public void StartAudioSources()
+    public void StartAudioSources() // ABSTRACTION
     {
         if (audioSources == null)
         {
@@ -116,22 +120,27 @@ public class AudioManager : ScriptableObject
         }
         setStartAudioWeights();
         SyncAudioClips();
-       // Debug.Log("AudioManager: StartAudioSources, audioSources.Count " + audioSources.Count);
+        // Debug.Log("AudioManager: StartAudioSources, audioSources.Count " + audioSources.Count);
     }
 
-    public void OnVolumeChanged(float volume)
+    public void OnVolumeChanged(float volume)// ABSTRACTION
     {
         // Debug.Log("AudioManager: audioVolumeChangedEvent event received, newVolume " + volume);
         if (volume < -40)//to switch sound completely off at lower end of the scale
         {
             volume = -80;
         }
+
         masterMixer.SetFloat("MasterVolume", volume);
+#if UNITY_WEBGL
+        preferredAudioSettings.masterVolume = volume;
+#else 
         preferredAudioSettings.masterVolume = volume;
         preferredAudioSettings.ToFile();
+#endif
     }
 
-    public void SyncAudioClips()
+    public void SyncAudioClips()// ABSTRACTION
     {//if playing more clips from the same theme
         if (audioSources != null)
         {

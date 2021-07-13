@@ -6,8 +6,8 @@ using UnityEngine.EventSystems;
 
 public class CanvasScript : UIBehaviour
 {
-    [SerializeField] private GameEvents gameEvents;
-    [SerializeField] private List<GameObject> displayOnWin;
+    [SerializeField] private GameEvents gameEvents;         // ENCAPSULATION
+    [SerializeField] private List<GameObject> displayOnWin; // ENCAPSULATION
 
     protected override void OnEnable()
     {
@@ -17,7 +17,7 @@ public class CanvasScript : UIBehaviour
     {
         gameEvents.gameWonEvent -= OnWin;
     }
-    public void OnWin()
+    public void OnWin() // ABSTRACTION
     {
         foreach (var item in displayOnWin)
         {

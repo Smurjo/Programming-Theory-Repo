@@ -13,10 +13,10 @@ public class SceneControl : ScriptableObject
 
     public void Initialize()
     {
-        gameEvents.applicationStartEvent += LoadStartScene;
-        gameEvents.mainSceneLoadRequestedEvent += LoadMainScene;
-        gameEvents.menuSceneLoadRequestedEvent += LoadStartScene;
-        gameEvents.applicationExitEvent += Exit;
+        gameEvents.applicationStartEvent += LoadStartScene;// POLYMORPHISM?
+        gameEvents.mainSceneLoadRequestedEvent += LoadMainScene;// POLYMORPHISM?
+        gameEvents.menuSceneLoadRequestedEvent += LoadStartScene;// POLYMORPHISM?
+        gameEvents.applicationExitEvent += Exit;// POLYMORPHISM?
     }
 
     public void CleanUp()
